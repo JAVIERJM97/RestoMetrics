@@ -1,0 +1,162 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #d0e7f9; /* Fondo azul pastel */
+    color: #333;
+}
+
+.wrapper {
+    width: 60%; /* Reducir ancho total */
+    max-width: 900px; /* Limitar tamaño máximo */
+    padding: 10px; /* Reducir padding */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Reducir espacio entre secciones */
+}
+
+.section, .section-full {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px; /* Reducir padding interno */
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-full {
+    grid-column: span 2;
+}
+
+h1 {
+    font-size: 20px; /* Reducir tamaño del título principal */
+    margin-bottom: 10px;
+    text-align: center;
+    color: #003366; /* Azul oscuro */
+}
+
+h2 {
+    font-size: 16px; /* Reducir tamaño de subtítulos */
+    margin-bottom: 8px;
+    color: #004080; /* Azul medio */
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 12px; /* Reducir tamaño del texto */
+}
+
+input, select {
+    width: 100%;
+    padding: 8px; /* Reducir tamaño de las cajas */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px; /* Reducir tamaño del texto interno */
+}
+
+button {
+    padding: 8px 15px; /* Botones más compactos */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px; /* Reducir tamaño del texto */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Reducir margen superior */
+}
+
+.button-container button {
+    width: 48%; /* Ajustar ancho de botones */
+}
+
+.prediction-section {
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    right: 5%; /* Ajusta según el espacio */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column; /* Apila el cuadro y el botón verticalmente */
+    align-items: center;
+    width: 250px; /* Ancho fijo para mantener la alineación */
+    background-color: #e6f7ff; /* Azul claro */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#prediction-box {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: #0056b3;
+    margin-bottom: 10px; /* Espaciado entre el cuadro y el botón */
+}
+
+button[formaction="/show_change"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%; /* Ajusta para que el botón ocupe todo el ancho */
+    text-align: center;
+}
+
+button[formaction="/show_change"]:hover {
+    background-color: #0056b3;
+}
+
+.help-section {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 250px; /* Ajusta el ancho del desplegable */
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.help-section details {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.help-section summary {
+    font-weight: bold;
+    color: #003366;
+}
+
+.help-section p {
+    margin-top: 10px;
+    line-height: 1.4;
+    font-size: 14px;
+    color: #333;
+}

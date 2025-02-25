@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Prediction</title>
+    <!-- Vincular el CSS externo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Revenue Prediction for Restaurants</h1>
+        
+        <!-- Formulario para Restaurant Name -->
+        <div class="section-full">
+            <h2>Restaurant Name</h2>
+            <form action="/search" method="post" id="restaurant-name-form">
+                <div class="inline-container">
+                    <input type="text" name="restaurant_name" id="restaurant_name" value="{{ user_input['restaurant_name'] if user_input else '' }}" placeholder="Enter Restaurant Name" required>
+                    <button type="submit" form="restaurant-name-form">Search</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Formulario para Location Information -->
+        <form action="/predict" method="post">
+            <div class="section-full">
+                <h2>Location Information</h2>
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <label for="country">Country:</label>
+                        <input type="text" name="country" id="country" value="{{ user_input['country'] if user_input else '' }}" required>
+                    </div>
+                    <div>
+                        <label for="city">City:</label>
+                        <input type="text" name="city" id="city" value="{{ user_input['city'] if user_input else '' }}" required>
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" value="{{ user_input['email'] if user_input else '' }}" required>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Rest of the Form -->
+            <div class="container">
+                <div class="section">
+                    <h2>Location and Parking</h2>
+                    <label for="location">Location:</label>
+                    <select name="location" id="location">
+                        <option value="Downtown" {% if user_input and user_input['location'] == "Downtown" %}selected{% endif %}>Downtown</option>
+                        <option value="Rural" {% if user_input and user_input['location'] == "Rural" %}selected{% endif %}>Rural</option>
+                        <option value="Suburban" {% if user_input and user_input['location'] == "Suburban" %}selected{% endif %}>Suburban</option>
+                    </select>
+
+                    <label for="parking_availability">Has Parking?</label>
+                    <select name="parking_availability" id="parking_availability">
+                        <option value="Yes" {% if user_input and user_input['parking_availability'] == "Yes" %}selected{% endif %}>Yes</option>
+                        <option value="No" {% if user_input and user_input['parking_availability'] == "No" %}selected{% endif %}>No</option>
+                    </select>
+                </div>
+
+
+                <!-- Section 3: Cuisine and Chef Experience -->
+                <div class="section">
+                    <h2>Cuisine and Chef Experience</h2>
+                    <label for="cuisine">Cuisine Type:</label>
+                    <select name="cuisine" id="cuisine">
+                        <option value="American" {% if user_input and user_input['cuisine'] == "American" %}selected{% endif %}>American</option>
+                        <option value="French" {% if user_input and user_input['cuisine'] == "French" %}selected{% endif %}>French</option>
+                        <option value="Indian" {% if user_input and user_input['cuisine'] == "Indian" %}selected{% endif %}>Indian</option>
+                        <option value="Italian" {% if user_input and user_input['cuisine'] == "Italian" %}selected{% endif %}>Italian</option>
+                        <option value="Japanese" {% if user_input and user_input['cuisine'] == "Japanese" %}selected{% endif %}>Japanese</option>
+                        <option value="Mexican" {% if user_input and user_input['cuisine'] == "Mexican" %}selected{% endif %}>Mexican</option>
+                    </select><br><br>
+
+                    <label for="chef_experience_years">Chef Experience Years:</label>
+                    <input type="number" name="chef_experience_years" id="chef_experience_years" value="{{ user_input['chef_experience_years'] if user_input else '' }}" required><br><br>
+                </div>
+
+                <!-- Section 4: Seating and Reservations -->
+                <div class="section">
+                    <h2>Seating and Reservations</h2>
+                    <label for="seating_capacity">Seating Capacity:</label>
+                    <input type="number" name="seating_capacity" id="seating_capacity" value="{{ user_input['seating_capacity'] if user_input else '' }}" required><br><br>
+
+                    <label for="weekday_reservations">Weekday Reservations:</label>
+                    <input type="number" name="weekday_reservations" id="weekday_reservations" value="{{ user_input['weekday_reservations'] if user_input else '' }}" required><br><br>
+
+                    <label for="weekend_reservations">Weekend Reservations:</label>
+                    <input type="number" name="weekend_reservations" id="weekend_reservations" value="{{ user_input['weekend_reservations'] if user_input else '' }}" required><br><br>
+                </div>
+
+                <!-- Section 5: Average Meal Price and Service Quality -->
+                <div class="section">
+                    <h2>Average Meal Price and Service Quality</h2>
+                    <label for="average_meal_price">Average Meal Price ($):</label>
+                    <input type="number" step="0.1" name="average_meal_price" id="average_meal_price" value="{{ user_input['average_meal_price'] if user_input else '' }}" required><br><br>
+
+                    <label for="service_quality_score">Service Quality Score:</label>
+                    <input type="number" step="0.1" name="service_quality_score" id="service_quality_score" value="{{ user_input['service_quality_score'] if user_input else '' }}" required><br><br>
+                </div>
+
+                <!-- Section 6: Rating, Social Media Followers, and Reviews -->
+                <div class="section">
+                    <h2>Rating, Social Media Followers, and Reviews</h2>
+                    <label for="rating">Rating (0 to 5):</label>
+                    <input type="number" step="0.1" name="rating" id="rating" value="{{ user_input['rating'] if user_input else '' }}" required><br><br>
+
+                    <label for="social_media_followers">Social Media Followers:</label>
+                    <input type="number" name="social_media_followers" id="social_media_followers" value="{{ user_input['social_media_followers'] if user_input else '' }}" required><br><br>
+
+                    <label for="number_of_reviews">Number of Reviews:</label>
+                    <input type="number" name="number_of_reviews" id="number_of_reviews" value="{{ user_input['number_of_reviews'] if user_input else '' }}" required><br><br>
+                </div>
+
+                <!-- Section 7: Marketing Budget -->
+                <div class="section">
+                    <h2>Marketing Budget</h2>
+                    <label for="marketing_budget">Marketing Budget ($):</label>
+                    <input type="number" name="marketing_budget" id="marketing_budget" value="{{ user_input['marketing_budget'] if user_input else '' }}" required><br><br>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <details>
+                    <summary>How to use Restaurant Predictor</summary>
+                    <p>Restaurant predictor is an easy and simple way for you to calculate your annual restaurant variation in revenue sampling different scenarios of data. First, search your restaurant on our database to help you fill in some data. Then, add the additional data and save it in our system. Perform different scenarios by modifying the data and see how your revenue will perform. Thanks for using Restaurant Predictor!</p>
+                </details>
+            </div>
+
+            <div class="prediction-section">
+                <!-- Prediction Box -->
+                {% if percentage_change %}
+                    <div id="prediction-box">
+                        <h2>Change in Revenue:</h2>
+                        <p>{{ percentage_change }}</p>
+                    </div>
+                {% endif %}
+            
+                <!-- Show Change Button -->
+                <button type="submit" formaction="/show_change">Show Change</button>
+            </div>
+         <!-- Button Container -->
+          <div class="button-container">
+                <button type="submit" formaction="/predict">Confirm Data</button>
+           
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+</div>
+</body>
+</html>
